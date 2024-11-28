@@ -23,6 +23,16 @@ interface Props {
   dataSource: any[];
 }
 
+const ContentTable = ({ columns, dataSource }: Props) => {
+  const dataRecord = [{ name: "test" }, { name: "test" }];
+  return (
+    <Table
+      pagination={false}
+      columns={[{ dataIndex: "name" }]}
+      dataSource={dataRecord}
+    />
+  );
+};
 const CustomTable = ({ columns, dataSource }: Props) => {
   const { styles } = useStyles();
 
@@ -33,7 +43,9 @@ const CustomTable = ({ columns, dataSource }: Props) => {
       dataSource={dataSource}
       pagination={false}
       expandable={{
-        expandedRowRender: (record: any) => record.name,
+        expandedRowRender: (record: any) => (
+          <ContentTable columns={[]} dataSource={[]} />
+        ),
         expandRowByClick: true,
       }}
     />
